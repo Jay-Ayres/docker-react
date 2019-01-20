@@ -10,3 +10,18 @@ before_install:
 
 script:
   -  docker run jayce/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "sa-east-1"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-sa-east-1-412119120494"
+  bucket_path: "docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRETY_KEY"
+
+  
